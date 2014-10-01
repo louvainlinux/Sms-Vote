@@ -5,8 +5,9 @@ Programme des statistiques utilisé pour les 24h Vélo de LLN.
 
 Depedances
 ==========
-ADB : sudo apt-get install android-tools-adb
-pyADB : sudo pip install pyadb
+ADB : sudo apt-get install android-tools-adb ; 
+pyADB : sudo pip install pyadb ; 
+sqlite3 : sudo apt-get install sqlite3; 
 
 Utilisation
 ===========
