@@ -5,13 +5,23 @@ Programme des statistiques utilisé pour les 24h Vélo de LLN.
 
 Depedances
 ==========
-ADB : sudo apt-get install android-tools-adb ; 
-pyADB : sudo pip install pyadb ; 
-sqlite3 : sudo apt-get install sqlite3; 
+``` bash
+sudo apt-get install android-tools-adb
+sudo pip install pyadb
+sudo apt-get install sqlite3
+```
 
 Utilisation
 ===========
-Besoin de se connecter au device avant de lancer le script si la connection se fait en wifi: 
-adb connect $IP
+Modifier la variable 
+```
+smartphone_addr = "192.168.1.4"
+```
+Avec l'adresse IP de votre smartphone Android
 
 
+Vous devez aussi modifier le fichier kap.list avec la liste des participants. Le format est simple:
+```
+id_participant  nom
+```
+(séparés par des tabulations)
