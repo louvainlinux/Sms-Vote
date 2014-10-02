@@ -3,7 +3,7 @@ Sms-Vote
 
 Programme des statistiques utilisé pour les 24h Vélo de LLN. 
 
-Depedances
+Dependances
 ==========
 ``` bash
 sudo apt-get install android-tools-adb
