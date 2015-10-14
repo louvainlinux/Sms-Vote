@@ -32,9 +32,16 @@ def update_db():
         cmd = "su -c 'cat /data/data/com.android.providers.telephony/databases/mmssms.db > /sdcard/mmssms.db'"
         adb.shell_command(cmd)
 
+	cmd = "su -c 'cat /data/data/com.android.providers.telephony/databases/mmssms.db-journal > /sdcard/mmssms.db-journal'"
+        adb.shell_command(cmd)
+	
+
         adb.get_remote_file('/sdcard/mmssms.db','./')
+	adb.get_remote_file('/sdcard/mmssms.db-journal','./')
 
         cmd = "su -c 'rm /sdcard/mmssms.db'"
+	adb.shell_command(cmd)
+	cmd = "su -c 'rm /sdcard/mmssms.db-journal'"
         adb.shell_command(cmd)
 
 def get_votes():
@@ -103,6 +110,9 @@ def get_place(vote_list):
 def print_all(kot_list, vote_list, old_vote_list):
 	ordered_old = get_place(old_vote_list)
 	ordered_new = get_place(vote_list)
+	fichier = open("classement.txt", "a") # Ouvre le fichier.
+	fichier.write("---- Classement ----\n") # Ecris la réponse qui a été tapée.
+	
 	print "---- Classement ----"
 	last_displayed_place = -1
 	for kot, (place, votes) in sorted(ordered_new.iteritems(),key=lambda x: x[1][0]):
@@ -120,7 +130,9 @@ def print_all(kot_list, vote_list, old_vote_list):
 		else:
 			displayed_place = str(place)+"."
 			last_displayed_place = place
+		fichier.write("{}\t{}\t{}\t{} ({})\n".format(displayed_place, place_indicator, votes, kot_list[kot], kot))
 		print "{}\t{}\t{}\t{} ({})".format(displayed_place, place_indicator, votes, kot_list[kot], kot)
+	fichier.close() # Ferme le fichier
 
 def compare_votes(oldl,newl,kap_list):
 	to_display = []
